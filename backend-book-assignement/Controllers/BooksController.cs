@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using backend_book_assignement.Data;
 using System.Linq;
 using backend_book_assignement.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace TestApplication.Controllers
 {
@@ -49,6 +50,23 @@ namespace TestApplication.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("AddBooks", new { id = book.id }, bookDTO);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Books>> Delete_Book(int id)
+        {
+            var book = _context.Book.Find(id);
+
+            if (book == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                _context.Remove(book);
+                await _context.SaveChangesAsync();
+                return book;
+            }
         }
     }
 }
