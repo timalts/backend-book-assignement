@@ -13,9 +13,9 @@ tim => Timothé Noël
 heroku login
 heroku container:login
 
-docker build -t dorset-api .
-docker tag dorset-api registry.heroku.com/dorset-api/web
-docker push registry.heroku.com/dorset-api/web
-heroku container:push web -a dorset-api
-heroku container:release web -a dorset-api
+docker build -t backend-book-assignement .
+docker tag backend-book-assignement registry.heroku.com/backend-book-assignement/web
+docker push registry.heroku.com/backend-book-assignement/web
+heroku container:push web -a backend-book-assignement
+heroku container:release web -a backend-book-assignement
 ```
