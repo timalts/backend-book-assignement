@@ -9,7 +9,7 @@ emeric => Emeric DuGardin
 tim => Timothé Noël
 
 ## Deploy to heroku
-
+```
 heroku login
 heroku container:login
 
@@ -18,3 +18,4 @@ docker tag dorset-api registry.heroku.com/dorset-api/web
 docker push registry.heroku.com/dorset-api/web
 heroku container:push web -a dorset-api
 heroku container:release web -a dorset-api
+```
