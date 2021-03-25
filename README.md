@@ -4,9 +4,10 @@ Assignement due for the 25/03 in the back-end class. Purpose is to help us impro
 
 ## Branch name explanation
 
-pl => Pierre-Louis Garnerone
-emeric => Emeric DuGardin
-tim => Timothé Noël
+pl => Pierre-Louis Garnerone - 
+emeric => Emeric DuGardin - 
+tim => Timothé Noël - 
+nathan => Nathan Ave
 
 ## Deploy to heroku
 ```
