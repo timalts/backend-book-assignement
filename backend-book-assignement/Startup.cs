@@ -1,7 +1,9 @@
+using backend_book_assignement.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -31,6 +33,11 @@ namespace backend_book_assignement
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "backend_book_assignement", Version = "v1" });
+            });
+
+            services.AddDbContext<Context>(opt =>
+            {
+                opt.UseMySql(Configuration.GetConnectionString("DbConnect"));
             });
         }
 
