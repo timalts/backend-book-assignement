@@ -33,6 +33,12 @@ namespace TestApplication.Controllers
             return await book.ToListAsync();
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Books>> GetBooks_ById(int id)
+        {
+            return _context.Book.ToList().Find(x => x.id == id);
+        }
+
         [HttpPost]
         public async Task<ActionResult<Books>> Add_Books(Books bookDTO)
         {
@@ -52,10 +58,12 @@ namespace TestApplication.Controllers
             return CreatedAtAction("AddBooks", new { id = book.id }, bookDTO);
         }
 
+
         [HttpDelete("{id}")]
         public async Task<ActionResult<Books>> Delete_Book(int id)
         {
             var book = _context.Book.Find(id);
+
 
             if (book == null)
             {
@@ -64,6 +72,7 @@ namespace TestApplication.Controllers
             else
             {
                 _context.Remove(book);
+
                 await _context.SaveChangesAsync();
                 return book;
             }
