@@ -78,5 +78,27 @@ namespace TestApplication.Controllers
             }
         }
 
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Update_Books(int id, Books book)
+        {
+            if (id != book.id || !BookExists(id))
+            {
+                return BadRequest();
+            }
+            else
+            {
+                var books = _context.Book.SingleOrDefault(x => x.id == id);
+
+                books.isbn = book.isbn;
+                books.price = book.price;
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
+        }
+
+        private bool BookExists(int id)
+        {
+            return _context.Book.Any(x => x.id == id);
+        }
     }
 }
