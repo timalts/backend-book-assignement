@@ -31,5 +31,24 @@ namespace TestApplication.Controllers
 
             return await book.ToListAsync();
         }
+
+        [HttpPost]
+        public async Task<ActionResult<Books>> Add_Books(Books bookDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var book = new Books()
+            {
+                isbn = bookDTO.isbn,
+                price = bookDTO.price
+            };
+            await _context.Book.AddAsync(book);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("AddBooks", new { id = book.id }, bookDTO);
+        }
     }
 }
