@@ -63,7 +63,7 @@ namespace TestApplication.Controllers
         public async Task<ActionResult<Books>> Delete_Book(int id)
         {
             var book = _context.Book.Find(id);
-            
+
 
             if (book == null)
             {
@@ -72,33 +72,11 @@ namespace TestApplication.Controllers
             else
             {
                 _context.Remove(book);
-                
+
                 await _context.SaveChangesAsync();
                 return book;
             }
         }
 
-        [HttpPut("{id}")]
-        public async Task<ActionResult> Update_Books(int id, Books book)
-        {
-            if (id != book.id || !BookExists(id))
-            {
-                return BadRequest();
-            }
-            else
-            {
-                var books = _context.Book.SingleOrDefault(x => x.id == id);
-
-                books.isbn = book.isbn;
-                books.price = book.price;
-                await _context.SaveChangesAsync();
-                return NoContent();
-            }
-        }
-
-        private bool BookExists(int id)
-        {
-            return _context.Book.Any(x => x.id == id);
-        }
     }
 }
