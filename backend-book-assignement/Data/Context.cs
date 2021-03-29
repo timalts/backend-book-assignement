@@ -12,5 +12,7 @@ namespace backend_book_assignement.Data
     {
         public Context(DbContextOptions<Context> options) : base(options) { }
         public DbSet<Books> Book { get; set; }
+        public DbSet<User> User { get; set; }
+
     }
 }
